@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Searchbar from "../components/Searchbar"
 
 type Game = {
     id?: number,
@@ -7,6 +8,7 @@ type Game = {
     platform?: string;
     rating?: number;
     price?: number;
+    image?: string
 }
 
 function isGame(data: unknown): data is Game {
@@ -25,8 +27,10 @@ function isGame(data: unknown): data is Game {
 
 export default function HomePage() {
     const [games, setGames] = useState<Game[]>([])
-
-    console.log(games);
+    const [query, setQuery] = useState("")
+    const [category, setCategory] = useState("")
+    const [sortBy, setSortBy] = useState("title")
+    const [sortOrder, setSortOrder] = useState("crescente")
 
     useEffect(() => {
         async function fetchGames() {
@@ -51,12 +55,51 @@ export default function HomePage() {
         }
         fetchGames()
     }, [])
+
+    const filteredGames = games.filter((game) =>
+        game.title.toLowerCase().includes(query.toLowerCase()) &&
+        (category === "" || game.category === category)
+    )
+
+    const sortedGames = filteredGames.sort((a, b) => {
+        const aVal = a[sortBy as keyof Game] as string
+        const bVal = b[sortBy as keyof Game] as string
+
+        return sortOrder === "crescente"
+            ? aVal.localeCompare(bVal)
+            : bVal.localeCompare(aVal)
+    })
     return (
         <>
-            <h1>Home Page</h1>
+            <div className="d-flex justify-content-between m-4">
+                <h1>Home Page</h1>
+                <Searchbar query={query} setQuery={setQuery} category={category} setCategory={setCategory} />
+            </div>
+            <div className="d-flex gap-3 align-items-center mx-4 mb-3">
+                <div>
+                    <label className="me-2">Ordina per:</label>
+                    <select className="form-select d-inline w-auto"
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                    >
+                        <option value="title">Titolo</option>
+                        <option value="category">Categoria</option>
+                    </select>
+                </div>
+                <div>
+                    <label className="me-2">Ordine:</label>
+                    <select className="form-select d-inline w-auto"
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                    >
+                        <option value="crescente">A - Z</option>
+                        <option value="decrescente">Z - A</option>
+                    </select>
+                </div>
+            </div>
             <div className="container">
                 <div className="row ">
-                    {games.map((game) => (
+                    {sortedGames.map((game) => (
                         <div className="col-md-4" key={game.id}>
                             <div className="card m-1">
                                 <img

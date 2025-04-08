@@ -15,7 +15,7 @@ export default function Layout() {
                 </div>
             </header>
 
-            <main className="container mt-4">
+            <main className="container mt-4 min-vh-100 ">
                 <Outlet />
             </main>
 
