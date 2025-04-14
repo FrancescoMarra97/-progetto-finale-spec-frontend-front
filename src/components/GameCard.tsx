@@ -43,18 +43,18 @@ export default function GameCard({ id, title, category, image, onCompare }: Game
                         />
                     </Link>
                 </div>
-                <Link to={`/games/${id}`}>
+                <Link to={`/games/${id}`} className='text-decoration-none' style={{ color: "inherit" }}>
                     <div className="card-body ">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text mt-1"><strong>Categoria:</strong> {category}</p>
                     </div>
                 </Link>
-
                 <div className="m-3">
                     <button className="btn btn-primary" onClick={() => onCompare(id)}>
                         Confronta
                     </button>
                 </div>
+
             </div>
         </div>
     );

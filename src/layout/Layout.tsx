@@ -10,7 +10,7 @@ export default function Layout() {
                 <div className="container d-flex justify-content-between align-items-center">
                     <nav className="d-flex align-items-center">
                         <Link
-                            className="text-white me-4 text-decoration-none fs-5 fw-bold hover-underline"
+                            className="text-white me-4 text-decoration-none fs-5 fw-bold hover-underline "
                             to="/"
                         >
                             Home

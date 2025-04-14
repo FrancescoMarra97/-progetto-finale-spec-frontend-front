@@ -72,6 +72,8 @@ export default function HomePage() {
         else if (!selectedGame2Id) setSelectedGame2Id(id);
     };
 
+
+
     return (
         <>
             <div className="d-flex justify-content-between m-4">
