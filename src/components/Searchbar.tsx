@@ -3,11 +3,11 @@
 type SearchBarProps = {
     query: string,
     setQuery: (value: string) => void,
-    category: string
+    category?: string
     setCategory: (value: string) => void
 }
 
-export default function Searchbar({ query, setQuery, category, setCategory }: SearchBarProps) {
+export default function Searchbar({ query, setQuery, setCategory }: SearchBarProps) {
 
 
 
