@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';  // Cuore pieno
 
+
 export default function Layout() {
 
     return (
@@ -34,7 +35,7 @@ export default function Layout() {
                 <Outlet />
             </main>
 
-            <footer className="bg-primary text-white p-3 mt-4">
+            <footer className="bg-primary  text-white p-3 mt-4">
 
             </footer>
         </>

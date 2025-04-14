@@ -113,7 +113,7 @@ export default function HomePage() {
 
             <div className="container">
                 <div className="row">
-                    {sortedGames.map((game) => (
+                    {sortedGames.length > 0 ? sortedGames.map((game) => (
                         <GameCard
                             key={game.id}
                             id={game.id}
@@ -122,7 +122,7 @@ export default function HomePage() {
                             image={game.image}
                             onCompare={handleCompare}
                         />
-                    ))}
+                    )) : <p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun gioco Trovato</p>}
                 </div>
 
                 {(selectedGame1Id || selectedGame2Id) && (

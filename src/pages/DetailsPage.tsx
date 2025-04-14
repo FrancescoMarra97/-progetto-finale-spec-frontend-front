@@ -38,7 +38,7 @@ export default function DetailsPage() {
     }, [id])
 
     if (!game) {
-        return <div className="container mt-5"><p>Caricamento in corso...</p></div>
+        return <div className="container mt-5"><p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun Gioco trovato</p></div>
     }
 
     return (
