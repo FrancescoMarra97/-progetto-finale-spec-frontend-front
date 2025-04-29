@@ -25,7 +25,7 @@ export default function Searchbar({ query, setQuery, setCategory }: SearchBarPro
     };
 
     return (
-        <div>
+        <div className="mt-1">
             <input
                 type="text"
                 className="form-control form-control-lg rounded-pill shadow-sm"

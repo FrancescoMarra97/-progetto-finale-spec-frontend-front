@@ -21,14 +21,10 @@ export default function Comparator({
 }: ComparatorProps) {
     const [game1, setGame1] = useState<Game | null>(null);
     const [game2, setGame2] = useState<Game | null>(null);
+    const [selectedCardId, setSelectedCardId] = useState<number | null>(null); // stato per tracciare la card selezionata
 
     useEffect(() => {
-        // Verifica se gli ID sono corretti
-        console.log("selectedGame1Id:", selectedGame1Id);
-        console.log("selectedGame2Id:", selectedGame2Id);
-
-        // Se manca uno degli ID o sono uguali, non fare fetch
-        if (!selectedGame1Id || !selectedGame2Id || selectedGame1Id === selectedGame2Id) {
+        if (!selectedGame1Id || !selectedGame2Id) {
             setGame1(null);
             setGame2(null);
             return;
@@ -36,13 +32,11 @@ export default function Comparator({
 
         async function fetchGames() {
             try {
-                // Fetch per entrambi i giochi
                 const [res1, res2] = await Promise.all([
                     fetch(`http://localhost:3001/games/${selectedGame1Id}`),
                     fetch(`http://localhost:3001/games/${selectedGame2Id}`),
                 ]);
 
-                // Verifica se le risposte sono ok
                 if (!res1.ok || !res2.ok) {
                     console.error("Errore nel recupero dei dati");
                     return;
@@ -51,13 +45,10 @@ export default function Comparator({
                 const data1 = await res1.json();
                 const data2 = await res2.json();
 
-                // Log per il debugging
-                console.log("Data gioco 1:", data1);
-                console.log("Data gioco 2:", data2);
-
-                // Imposta i giochi nel state
                 setGame1(data1);
                 setGame2(data2);
+
+
             } catch (error) {
                 if (error instanceof Error) {
                     console.error("Errore durante il recupero dei dati", error.message);
@@ -67,32 +58,50 @@ export default function Comparator({
             }
         }
 
+
         fetchGames();
     }, [selectedGame1Id, selectedGame2Id]);
 
-    // Verifica che gli ID siano impostati
+    useEffect(() => {
+        if (selectedGame1Id && selectedGame2Id && selectedGame1Id === selectedGame2Id) {
+            alert("Non puoi confrontare lo stesso gioco!");
+        }
+    }, [selectedGame1Id, selectedGame2Id]);
+
     if (!selectedGame1Id || !selectedGame2Id) {
-        return <p className="text-center mt-4">Seleziona due giochi per confrontarli.</p>;
+        return <p className="text-center text-white">Seleziona due giochi per confrontarli.</p>;
     }
 
     if (selectedGame1Id === selectedGame2Id) {
-        return <div className="alert alert-warning">Non puoi confrontare lo stesso gioco.</div>;
+        alert("Non puoi confrontare lo stesso gioco");
+        return null;
     }
 
-    // Verifica se i giochi sono caricati
+
+
     if (!game1 || !game2) {
-        return <p className="text-center mt-4">Caricamento giochi...</p>;
+        return <p className="text-center text-white">Caricamento giochi...</p>;
     }
 
+
+    const getCardClass = (gameId: number) => {
+        return gameId === selectedCardId ? "card-selected" : "";
+    };
 
     return (
         <div className="row mt-5">
-            <h2 className="mb-2 text-center">Rerord Comparati</h2>
+            <h2 className="mb-4 text-center text-white">Record Comparati</h2>
             {[game1, game2].map((game, id) => (
                 <div key={id} className="col-md-6">
-                    <div className="card h-100 shadow" style={{ width: "400px" }}>
+                    <div
+                        className={`card h-100 shadow ${getCardClass(game.id)}`}
+                        style={{
+                            width: "400px"
+                        }}
+                        onClick={() => setSelectedCardId(game.id)}
+                    >
                         <img
-                            src={game.image || "https://picsum.photos/200/300"}
+                            src={game.game.image || "https://picsum.photos/200/300"}
                             className="card-img-top"
                             alt={game.game.title}
                             style={{ objectFit: "cover", height: "200px" }}

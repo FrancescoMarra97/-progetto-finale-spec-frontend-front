@@ -38,13 +38,13 @@ export default function DetailsPage() {
     }, [id])
 
     if (!game) {
-        return <div className="container mt-5"><p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun Gioco trovato</p></div>
+        return <div className="container"><p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun Gioco trovato</p></div>
     }
 
     return (
         <>
-            <div className="container mt-5">
-                <img src={"https://placehold.co/600x400/png"} className="img-fluid mb-3" alt={game.title} />
+            <div className="container text-white">
+                <img src={"https://picsum.photos/600/400"} className="img-fluid mt-3 mb-3" alt={game.title} />
                 <h1>{game.title}</h1>
                 <p><strong>Categoria:</strong> {game.category}</p>
                 <p><strong>Piattaforma:</strong> {game.platform}</p>

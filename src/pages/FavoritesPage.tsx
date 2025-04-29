@@ -7,7 +7,7 @@ export default function FavouritesPage() {
     const { favorites } = useFavorites();
 
     return (
-        <div className="container mt-5">
+        <div className="container">
             <h1>Preferiti</h1>
             <div className="row">
                 {favorites.length === 0 ? (

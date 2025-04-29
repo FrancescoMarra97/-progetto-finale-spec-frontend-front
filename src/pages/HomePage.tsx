@@ -76,8 +76,8 @@ export default function HomePage() {
 
     return (
         <>
-            <div className="d-flex justify-content-between m-4">
-                <h1>Home Page</h1>
+            <div className="d-flex justify-content-between">
+                <h1 className="mt-1">Home Page</h1>
                 <Searchbar
                     query={query}
                     setQuery={setQuery}

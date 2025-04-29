@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 type Game = {
     id: number;
@@ -17,16 +17,31 @@ const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
     const [favorites, setFavorites] = useState<Game[]>([]);
 
+    // Carica i preferiti dal localStorage quando il componente viene montato
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem("favorites");
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+        }
+    }, []);
+
+
     const addFavorite = (game: Game) => {
         if (!favorites.find(f => f.id === game.id)) {
-            setFavorites([...favorites, game]);
+            const updatedFavorites = [...favorites, game];
+            setFavorites(updatedFavorites);
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
         }
     };
 
+    // Rimuovi un preferito e aggiorna il localStorage
     const removeFavorite = (gameId: number) => {
-        setFavorites(favorites.filter(f => f.id !== gameId));
+        const updatedFavorites = favorites.filter(f => f.id !== gameId);
+        setFavorites(updatedFavorites);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     };
 
+    // Verifica se un gioco è nei preferiti
     const isFavorite = (gameId: number) => {
         return favorites.some(f => f.id === gameId);
     };

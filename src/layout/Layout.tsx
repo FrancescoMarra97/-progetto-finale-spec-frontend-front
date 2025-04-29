@@ -1,13 +1,13 @@
 import { Outlet, Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';  // Cuore pieno
-
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 export default function Layout() {
 
     return (
         <>
-            <header className="bg-primary text-white p-3 shadow-sm">
+            <header className="bg-dark text-white shadow-sm">
                 <div className="container d-flex justify-content-between align-items-center">
                     <nav className="d-flex align-items-center">
                         <Link
@@ -31,12 +31,44 @@ export default function Layout() {
 
 
 
-            <main className="container mt-4 min-vh-100 ">
-                <Outlet />
+            <main>
+                <div className="container min-vh-100 ">
+                    <Outlet />
+                </div>
             </main>
 
-            <footer className="bg-primary  text-white p-3 mt-4">
-
+            <footer className="bg-dark text-white p-3">
+                <div className="container d-flex justify-content-between align-items-center">
+                    <div className="footer-links">
+                        <ul className="list-unstyled d-flex">
+                            <li className="me-3">
+                                <Link to="/" className="text-white text-decoration-none">About Us</Link>
+                            </li>
+                            <li className="me-3">
+                                <Link to="/" className="text-white text-decoration-none">Contatti</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer-social-icons">
+                        <ul className="list-unstyled d-flex">
+                            <li className="me-3">
+                                <a href="https://twitter.com" className="text-white">
+                                    <FontAwesomeIcon icon={faTwitter} size="lg" />
+                                </a>
+                            </li>
+                            <li className="me-3">
+                                <a href="https://instagram.com" className="text-white">
+                                    <FontAwesomeIcon icon={faInstagram} size="lg" />
+                                </a>
+                            </li>
+                            <li className="me-3">
+                                <a href="https://facebook.com" className="text-white">
+                                    <FontAwesomeIcon icon={faFacebook} size="lg" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </footer>
         </>
     )
