@@ -8,7 +8,7 @@ export default function FavouritesPage() {
 
     return (
         <div className="container">
-            <h1>Preferiti</h1>
+            <h1 className="pt-2 pb-2">Preferiti</h1>
             <div className="row">
                 {favorites.length === 0 ? (
                     <p>Non hai ancora aggiunto nessun gioco ai preferiti.</p>

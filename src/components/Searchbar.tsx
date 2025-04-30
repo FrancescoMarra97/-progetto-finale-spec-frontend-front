@@ -34,7 +34,8 @@ export default function Searchbar({ query, setQuery, setCategory }: SearchBarPro
                 onChange={handleChange}
             />
             <select
-                className="form-select w-50 m-2 rounded-pill shadow-sm"
+                className="form-select m-2 rounded-pill shadow-sm"
+                style={{ width: "70%" }}
                 onChange={(e) => setCategory(e.target.value)}
             >
                 <option value="">Tutte le categorie</option>

@@ -21,7 +21,6 @@ export default function Comparator({
 }: ComparatorProps) {
     const [game1, setGame1] = useState<Game | null>(null);
     const [game2, setGame2] = useState<Game | null>(null);
-    const [selectedCardId, setSelectedCardId] = useState<number | null>(null); // stato per tracciare la card selezionata
 
     useEffect(() => {
         if (!selectedGame1Id || !selectedGame2Id) {
@@ -47,17 +46,10 @@ export default function Comparator({
 
                 setGame1(data1);
                 setGame2(data2);
-
-
             } catch (error) {
-                if (error instanceof Error) {
-                    console.error("Errore durante il recupero dei dati", error.message);
-                } else {
-                    console.error("Errore sconosciuto");
-                }
+                console.error("Errore durante il recupero dei dati", error instanceof Error ? error.message : "Errore sconosciuto");
             }
         }
-
 
         fetchGames();
     }, [selectedGame1Id, selectedGame2Id]);
@@ -72,21 +64,14 @@ export default function Comparator({
         return <p className="text-center text-white">Seleziona due giochi per confrontarli.</p>;
     }
 
-    if (selectedGame1Id === selectedGame2Id) {
-        alert("Non puoi confrontare lo stesso gioco");
-        return null;
-    }
-
-
-
     if (!game1 || !game2) {
         return <p className="text-center text-white">Caricamento giochi...</p>;
     }
 
-
     const getCardClass = (gameId: number) => {
-        return gameId === selectedCardId ? "card-selected" : "";
+        return gameId === selectedGame1Id || gameId === selectedGame2Id ? "card-selected" : "";
     };
+
 
     return (
         <div className="row mt-5">
@@ -98,7 +83,10 @@ export default function Comparator({
                         style={{
                             width: "400px"
                         }}
-                        onClick={() => setSelectedCardId(game.id)}
+                        onClick={() => {
+                            setSelectedCardId(game.id);
+                        }}
+
                     >
                         <img
                             src={game.game.image || "https://picsum.photos/200/300"}

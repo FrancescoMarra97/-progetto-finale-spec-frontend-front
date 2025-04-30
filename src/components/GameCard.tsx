@@ -11,9 +11,10 @@ type GameCardProps = {
     category: string;
     image?: string;
     onCompare: (id: number) => void;
+    isSelected: boolean;
 };
 
-export default function GameCard({ id, title, category, image, onCompare }: GameCardProps) {
+export default function GameCard({ id, title, category, image, onCompare, isSelected }: GameCardProps) {
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
     // Verifica se il gioco è nei preferiti
@@ -26,7 +27,7 @@ export default function GameCard({ id, title, category, image, onCompare }: Game
 
     return (
         <div className="col-md-4 mb-4">
-            <div className="card h-100 shadow">
+            <div className={`card h-100 shadow ${isSelected ? "card-selected" : ""}`}>
                 <div className="position-relative">
                     <FontAwesomeIcon
                         icon={favorite ? faHeartSolid : faHeartRegular}
@@ -50,12 +51,12 @@ export default function GameCard({ id, title, category, image, onCompare }: Game
                     </div>
                 </Link>
                 <div className="m-3">
-                    <button className="btn btn-dark" onClick={() => onCompare(id)}>
+                    <button className="btn btn-primary" onClick={() => onCompare(id)}>
                         Confronta
                     </button>
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 }

@@ -76,8 +76,8 @@ export default function HomePage() {
 
     return (
         <>
-            <div className="d-flex justify-content-between">
-                <h1 className="mt-1">Home Page</h1>
+            <div className="d-flex justify-content-end">
+
                 <Searchbar
                     query={query}
                     setQuery={setQuery}
@@ -121,6 +121,7 @@ export default function HomePage() {
                             category={game.category}
                             image={game.image}
                             onCompare={handleCompare}
+                            isSelected={game.id === selectedGame1Id || game.id === selectedGame2Id}
                         />
                     )) : <p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun gioco Trovato</p>}
                 </div>

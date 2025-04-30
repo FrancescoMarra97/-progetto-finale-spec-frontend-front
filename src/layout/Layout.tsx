@@ -7,14 +7,14 @@ export default function Layout() {
 
     return (
         <>
-            <header className="bg-dark text-white shadow-sm">
+            <header className="text-white shadow-sm">
                 <div className="container d-flex justify-content-between align-items-center">
                     <nav className="d-flex align-items-center">
                         <Link
                             className="text-white me-4 text-decoration-none fs-5 fw-bold hover-underline "
                             to="/"
                         >
-                            Home
+                            <img src="/public/img/logo2.png" style={{ width: "150px" }} alt="" />
                         </Link>
                     </nav>
                     <nav className="d-flex align-items-center">
@@ -37,7 +37,7 @@ export default function Layout() {
                 </div>
             </main>
 
-            <footer className="bg-dark text-white p-3">
+            <footer className="shadow-sm text-white">
                 <div className="container d-flex justify-content-between align-items-center">
                     <div className="footer-links">
                         <ul className="list-unstyled d-flex">
