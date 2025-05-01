@@ -52,10 +52,9 @@ export default function HomePage() {
         fetchGames();
     }, []);
 
-    const filteredGames = games.filter(
-        (game) =>
-            game.title.toLowerCase().includes(query.toLowerCase()) &&
-            (category === "" || game.category === category)
+    const filteredGames = games.filter((game) =>
+        game.title.toLowerCase().includes(query.toLowerCase()) &&
+        (category === "" || game.category === category)
     );
 
     const sortedGames = filteredGames.sort((a, b) => {
@@ -67,7 +66,7 @@ export default function HomePage() {
     });
 
     const handleCompare = (id: number) => {
-        if (selectedGame1Id === id || selectedGame2Id === id) return; // già selezionato
+        if (selectedGame1Id === id || selectedGame2Id === id) return alert("Oops! Sembra che tu abbia selezionato lo stesso gioco per il confronto. Scegli due titoli diversi per confrontare le loro caratteristiche!"); // già selezionato
         if (!selectedGame1Id) setSelectedGame1Id(id);
         else if (!selectedGame2Id) setSelectedGame2Id(id);
     };
