@@ -52,17 +52,17 @@ export default function Layout() {
                     <div className="footer-social-icons">
                         <ul className="list-unstyled d-flex">
                             <li className="me-3">
-                                <a href="https://twitter.com" className="text-white">
+                                <a href="/" className="text-white">
                                     <FontAwesomeIcon icon={faTwitter} size="lg" />
                                 </a>
                             </li>
                             <li className="me-3">
-                                <a href="https://instagram.com" className="text-white">
+                                <a href="/" className="text-white">
                                     <FontAwesomeIcon icon={faInstagram} size="lg" />
                                 </a>
                             </li>
                             <li className="me-3">
-                                <a href="https://facebook.com" className="text-white">
+                                <a href="/" className="text-white">
                                     <FontAwesomeIcon icon={faFacebook} size="lg" />
                                 </a>
                             </li>

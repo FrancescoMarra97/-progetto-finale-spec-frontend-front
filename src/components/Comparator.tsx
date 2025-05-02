@@ -83,9 +83,7 @@ export default function Comparator({
                         style={{
                             width: "400px"
                         }}
-                        onClick={() => {
-                            setSelectedCardId(game.id);
-                        }}
+
 
                     >
                         <img
