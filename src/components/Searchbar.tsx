@@ -19,9 +19,10 @@ export default function Searchbar({ query, setQuery, setCategory }: SearchBarPro
     }, [setQuery]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value.trim()
-        setLocalInput(value);       // aggiorna subito l'input visualizzato
-        debouncedSetQuery(value);   // aggiorna query in ritardo
+        const value = e.target.value.trimStart()
+        setLocalInput(value);
+        debouncedSetQuery(value);  // aggiorna query in ritardo
+
     };
 
     return (

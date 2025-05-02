@@ -51,9 +51,10 @@ export default function GameCard({ id, title, category, image, onCompare, isSele
                     </div>
                 </Link>
                 <div className="m-3">
-                    <button className="btn btn-primary" onClick={() => onCompare(id)}>
+                    {onCompare && <button className="btn btn-primary" onClick={() => onCompare(id)}>
                         Confronta
                     </button>
+                    }
                 </div>
 
             </div>

@@ -38,7 +38,7 @@ export default function DetailsPage() {
     }, [id])
 
     if (!game) {
-        return <div className="container"><p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun Gioco trovato</p></div>
+        return <div className="container"><p className="text-center text-white pt-2" style={{ fontSize: "2rem" }}>Nessun Gioco trovato</p></div>
     }
 
     return (

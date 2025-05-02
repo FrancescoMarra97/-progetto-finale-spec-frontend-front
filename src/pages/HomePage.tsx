@@ -40,7 +40,7 @@ export default function HomePage() {
         async function fetchGames() {
             try {
                 const res = await fetch("http://localhost:3001/games");
-                const data: unknown = await res.json();
+                const data: Game = await res.json();
                 if (Array.isArray(data) && data.every(isGame)) {
                     setGames(data);
                 }
@@ -53,7 +53,7 @@ export default function HomePage() {
     }, []);
 
     const filteredGames = games.filter((game) =>
-        game.title.toLowerCase().includes(query.toLowerCase()) &&
+        game.title.toLowerCase().includes(query.trimEnd().toLowerCase()) &&
         (category === "" || game.category === category)
     );
 
@@ -122,7 +122,7 @@ export default function HomePage() {
                             onCompare={handleCompare}
                             isSelected={game.id === selectedGame1Id || game.id === selectedGame2Id}
                         />
-                    )) : <p className="text-center" style={{ fontSize: "1.5rem" }}>Nessun gioco Trovato</p>}
+                    )) : <p className="text-center text-white pt-2" style={{ fontSize: "2rem" }}>Nessun gioco Trovato</p>}
                 </div>
 
                 {(selectedGame1Id || selectedGame2Id) && (

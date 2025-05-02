@@ -8,10 +8,10 @@ export default function FavouritesPage() {
 
     return (
         <div className="container">
-            <h1 className="pt-2 pb-2">Preferiti</h1>
+            <h1 className="pt-2 pb-2 text-white" style={{ fontSize: "2.5rem" }}>Preferiti</h1>
             <div className="row">
                 {favorites.length === 0 ? (
-                    <p>Non hai ancora aggiunto nessun gioco ai preferiti.</p>
+                    <p className="text-white" style={{ fontSize: "2rem" }}>Non hai ancora aggiunto nessun gioco ai preferiti.</p>
                 ) : (
                     favorites.map((game) => (
                         <GameCard
@@ -19,8 +19,7 @@ export default function FavouritesPage() {
                             id={game.id}
                             title={game.title}
                             category={game.category}
-                            image={game.image}
-                            onCompare={() => { }}
+                            isSelected={false}
                         />
                     ))
                 )}
