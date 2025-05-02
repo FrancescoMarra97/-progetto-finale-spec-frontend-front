@@ -52,10 +52,12 @@ export default function HomePage() {
         fetchGames();
     }, []);
 
-    const filteredGames = games.filter((game) =>
-        game.title.toLowerCase().includes(query.trimEnd().toLowerCase()) &&
-        (category === "" || game.category === category)
-    );
+    const filteredGames = games.filter((game) => {
+        const searchWords = query.toLowerCase().trim().split(" "); // Divide l'input in parole
+        const validWords = searchWords.filter(word => word !== ""); // Filtra eventuali stringhe vuote causate da spazi extra
+        return validWords.every(word => game.title.toLowerCase().includes(word)) &&
+            (category === "" || game.category === category);
+    });
 
     const sortedGames = filteredGames.sort((a, b) => {
         const aVal = a[sortBy as keyof Game] as string;
