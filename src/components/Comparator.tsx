@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 type Game = {
+    game: any;
     id: number;
     readonly title: string;
     readonly category: string;
