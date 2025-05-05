@@ -33,7 +33,7 @@ footer {
 }
 
 body {
-    background-image: url('/public/img/coolbackgrounds-fractalize-spectrum-blue.png');
+    background-image: url('/img/coolbackgrounds-fractalize-spectrum-blue.png');
     background-size: cover;
     background-position: bottom;
     background-attachment: fixed;

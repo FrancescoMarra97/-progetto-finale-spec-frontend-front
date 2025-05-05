@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 type Game = {
+    image: string;
     category: string;
     id: number;
     title: string;

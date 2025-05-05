@@ -14,7 +14,7 @@ export default function Layout() {
                             className="text-white me-4 text-decoration-none fs-5 fw-bold hover-underline "
                             to="/"
                         >
-                            <img src="/public/img/logo2.png" style={{ width: "150px" }} alt="" />
+                            <img src="/img/logo2.png" style={{ width: "150px" }} alt="" />
                         </Link>
                     </nav>
                     <nav className="d-flex align-items-center">

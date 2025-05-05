@@ -10,7 +10,7 @@ type Game = {
     platform?: string;
     rating?: number;
     price?: number;
-    image?: string;
+    image: string;
 };
 
 function isGame(data: unknown): data is Game {
@@ -35,6 +35,9 @@ export default function HomePage() {
     const [sortOrder, setSortOrder] = useState("crescente");
     const [selectedGame1Id, setSelectedGame1Id] = useState<number | null>(null);
     const [selectedGame2Id, setSelectedGame2Id] = useState<number | null>(null);
+
+    console.log(games);
+
 
     useEffect(() => {
         async function fetchGames() {
@@ -128,7 +131,7 @@ export default function HomePage() {
                 </div>
 
                 {(selectedGame1Id || selectedGame2Id) && (
-                    <div className="d-flex justify-content-center">
+                    <div>
                         <Comparator
                             selectedGame1Id={selectedGame1Id}
                             selectedGame2Id={selectedGame2Id}

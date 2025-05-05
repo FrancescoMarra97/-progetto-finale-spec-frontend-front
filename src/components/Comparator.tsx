@@ -8,7 +8,7 @@ type Game = {
     platform?: string;
     rating?: number;
     price?: number;
-    image?: string;
+    image: string;
 };
 
 type ComparatorProps = {
@@ -39,7 +39,7 @@ export default function Comparator({
 
                 if (!res1.ok || !res2.ok) {
                     console.error("Errore nel recupero dei dati");
-                    return;
+                    return null;
                 }
 
                 const data1 = await res1.json();
@@ -76,11 +76,11 @@ export default function Comparator({
 
     return (
         <div className="row mt-5">
-            <h2 className="mb-4 text-center text-white">Record Comparati</h2>
+            <h2 className="mb-4 text-center text-white">Giochi Comparati</h2>
             {[game1, game2].map((game, id) => (
-                <div key={id} className="col-md-6">
+                <div key={id} className="col-md-6 pt-1" style={{ display: "flex", justifyContent: "center", }}>
                     <div
-                        className={`card h-100 shadow ${getCardClass(game.id)}`}
+                        className={`card h-100 shadow  ${getCardClass(game.id)}`}
                         style={{
                             width: "400px"
                         }}

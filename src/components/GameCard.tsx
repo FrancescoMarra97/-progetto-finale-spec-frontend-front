@@ -9,7 +9,7 @@ type GameCardProps = {
     id: number;
     title: string;
     category: string;
-    image?: string;
+    image: string;
     onCompare: (id: number) => void;
     isSelected: boolean;
 };

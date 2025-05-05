@@ -9,7 +9,7 @@ type Game = {
     platform?: string;
     rating?: number;
     price?: number;
-    image?: string
+    image: string
 }
 export default function DetailsPage() {
     const [game, setGame] = useState<Game | null>(null)
@@ -44,7 +44,7 @@ export default function DetailsPage() {
     return (
         <>
             <div className="container text-white">
-                <img src={"https://picsum.photos/600/400"} className="img-fluid mt-3 mb-3" alt={game.title} />
+                <img src={game.image} className="img-fluid mt-3 mb-3" alt={game.title} style={{ height: "400px", width: "600px" }} />
                 <h1>{game.title}</h1>
                 <p><strong>Categoria:</strong> {game.category}</p>
                 <p><strong>Piattaforma:</strong> {game.platform}</p>

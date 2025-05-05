@@ -20,6 +20,8 @@ export default function FavouritesPage() {
                             title={game.title}
                             category={game.category}
                             isSelected={false}
+                            image={game.image}
+
                         />
                     ))
                 )}
