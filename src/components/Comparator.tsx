@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type Game = {
     game: any;
@@ -22,6 +22,8 @@ export default function Comparator({
 }: ComparatorProps) {
     const [game1, setGame1] = useState<Game | null>(null);
     const [game2, setGame2] = useState<Game | null>(null);
+    const [hasScrolled, setHasScrolled] = useState(false);
+    const comparatorRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         if (!selectedGame1Id || !selectedGame2Id) {
@@ -56,6 +58,14 @@ export default function Comparator({
     }, [selectedGame1Id, selectedGame2Id]);
 
     useEffect(() => {
+        // Scroll solo quando entrambi i giochi sono caricati 
+        if (game1 && game2 && comparatorRef.current && !hasScrolled) {
+            comparatorRef.current.scrollIntoView({ behavior: "smooth" });
+            setHasScrolled(true);
+        }
+    }, [game1, game2, hasScrolled]);
+
+    useEffect(() => {
         if (selectedGame1Id && selectedGame2Id && selectedGame1Id === selectedGame2Id) {
             alert("Non puoi confrontare lo stesso gioco!");
         }
@@ -73,9 +83,8 @@ export default function Comparator({
         return gameId === selectedGame1Id || gameId === selectedGame2Id ? "card-selected" : "";
     };
 
-
     return (
-        <div className="row mt-5">
+        <div ref={comparatorRef} className="row mt-5">
             <h2 className="mb-4 text-center text-white">Giochi Comparati</h2>
             {[game1, game2].map((game, id) => (
                 <div key={id} className="col-md-6 pt-1" style={{ display: "flex", justifyContent: "center", }}>
@@ -84,8 +93,6 @@ export default function Comparator({
                         style={{
                             width: "400px"
                         }}
-
-
                     >
                         <img
                             src={game.game.image || "https://picsum.photos/200/300"}
