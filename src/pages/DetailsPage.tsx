@@ -17,23 +17,23 @@ export default function DetailsPage() {
 
     console.log(game);
 
-    useEffect(() => {
-        async function fetchGames() {
-            try {
-                const res = await fetch(`http://localhost:3001/games/${id}`)
-                if (!res.ok) {
-                    throw new Error(`Errore HTTP ${res.status}: ${res.statusText}`);
-                }
-                const data = await res.json()
-                setGame(data.game)
-            } catch (error) {
-                if (error instanceof Error) {
-                    console.error("Errore durante il recupero dei dati", error.message)
-                } else {
-                    console.error("Errore sconosciuto");
-                }
+    async function fetchGames() {
+        try {
+            const res = await fetch(`http://localhost:3001/games/${id}`)
+            if (!res.ok) {
+                throw new Error(`Errore HTTP ${res.status}: ${res.statusText}`);
+            }
+            const data = await res.json()
+            setGame(data.game)
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error("Errore durante il recupero dei dati", error.message)
+            } else {
+                console.error("Errore sconosciuto");
             }
         }
+    }
+    useEffect(() => {
         fetchGames()
     }, [id])
 
