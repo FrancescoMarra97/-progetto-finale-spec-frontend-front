@@ -12,7 +12,8 @@ export default function Searchbar({ query, setQuery, setCategory }: SearchBarPro
     const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const debouncedSetQuery = useCallback((value: string) => {
-        if (timer.current) clearTimeout(timer.current);
+        if (timer.current) clearTimeout(timer.current); // Se c'è un timer già attivo, lo annullo
+        // imposto un nuovo timer
         timer.current = setTimeout(() => {
             setQuery(value);
         }, 500);
