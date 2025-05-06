@@ -9,7 +9,7 @@ type SearchBarProps = {
 
 export default function Searchbar({ query, setQuery, setCategory }: SearchBarProps) {
     const [localInput, setLocalInput] = useState(query);
-    const timer = useRef<NodeJS.Timeout | null>(null);
+    const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const debouncedSetQuery = useCallback((value: string) => {
         if (timer.current) clearTimeout(timer.current);
@@ -22,7 +22,6 @@ export default function Searchbar({ query, setQuery, setCategory }: SearchBarPro
         const value = e.target.value.trimStart()
         setLocalInput(value);
         debouncedSetQuery(value);  // aggiorna query in ritardo
-
     };
 
     return (
